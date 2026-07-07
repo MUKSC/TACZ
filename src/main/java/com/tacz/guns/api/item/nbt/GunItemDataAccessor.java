@@ -334,13 +334,7 @@ public interface GunItemDataAccessor extends IGun {
         }
         gun.update(DataComponents.CUSTOM_DATA, CustomData.EMPTY, data -> data.update(tag -> {
             String key = GUN_ATTACHMENT_BASE + iAttachment.getType(attachment).name();
-            Tag attachmentTag;
-            // FIXME: KubeJS
-            if (provider == null) {
-                attachmentTag = ItemStack.CODEC.encodeStart(NbtOps.INSTANCE, attachment).getOrThrow();
-            } else {
-                attachmentTag = attachment.saveOptional(provider);
-            }
+            Tag attachmentTag = attachment.saveOptional(provider);
             tag.put(key, attachmentTag);
         }));
     }

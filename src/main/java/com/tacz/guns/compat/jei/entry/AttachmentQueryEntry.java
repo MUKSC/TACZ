@@ -7,7 +7,6 @@ import com.tacz.guns.api.item.IGun;
 import com.tacz.guns.api.item.builder.AttachmentItemBuilder;
 import com.tacz.guns.api.item.builder.GunItemBuilder;
 import com.tacz.guns.compat.jei.category.AttachmentQueryCategory;
-import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -69,7 +68,7 @@ public class AttachmentQueryEntry {
             String tabType = type.name().toLowerCase(Locale.US);
             String gunType = entry.getValue().getType();
             if (tabType.equals(gunType)) {
-                ItemStack gun = GunItemBuilder.create().setId(entry.getKey()).build(Minecraft.getInstance().level.registryAccess());
+                ItemStack gun = GunItemBuilder.create().setId(entry.getKey()).build(null);
                 if (!(gun.getItem() instanceof IGun iGun)) {
                     return;
                 }

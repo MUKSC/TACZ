@@ -17,7 +17,6 @@ import com.tacz.guns.resource.pojo.data.gun.GunData;
 import com.tacz.guns.util.AllowAttachmentTagMatcher;
 import com.tacz.guns.util.AttachmentDataUtils;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -330,7 +329,7 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
     /**
      * 获取某一类 TabType 的所有枪械物品的实例。用于填充创造物品栏和枪械制造台。
      */
-    public static NonNullList<ItemStack> fillItemCategory(GunTabType type, HolderLookup.Provider provider) {
+    public static NonNullList<ItemStack> fillItemCategory(GunTabType type) {
         NonNullList<ItemStack> stacks = NonNullList.create();
         TimelessAPI.getAllCommonGunIndex().stream().sorted(idNameSort()).forEach(entry -> {
             CommonGunIndex index = entry.getValue();
@@ -344,7 +343,7 @@ public abstract class AbstractGunItem extends Item implements IGun, IAnimationIt
                         .setAmmoCount(gunData.getAmmoAmount())
                         .setHeatData(gunData.hasHeatData())
                         .setAmmoInBarrel(true)
-                        .build(provider);
+                        .build(null);
                 stacks.add(itemStack);
             }
         });

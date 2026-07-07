@@ -30,8 +30,8 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.commands.arguments.ParticleArgument;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.registries.VanillaRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
@@ -605,8 +605,10 @@ public class GunDisplayInstance {
         if (particle != null) {
             try {
                 String name = particle.getName();
-                if (StringUtils.isNoneBlank() && Minecraft.getInstance().level instanceof Level level) {
-                    particle.setParticleOptions(ParticleArgument.readParticle(new StringReader(name), level.registryAccess()));
+                if (StringUtils.isNoneBlank()) {
+                    HolderLookup.Provider provider = Minecraft.getInstance().level instanceof Level level ?
+                        level.registryAccess() : VanillaRegistries.createLookup();
+                    particle.setParticleOptions(ParticleArgument.readParticle(new StringReader(name), provider));
                     Preconditions.checkArgument(particle.getCount() > 0, "particle count must be greater than 0");
                     Preconditions.checkArgument(particle.getLifeTime() > 0, "particle life time must be greater than 0");
                     this.particle = particle;
