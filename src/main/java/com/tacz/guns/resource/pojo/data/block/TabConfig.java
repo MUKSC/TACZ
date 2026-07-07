@@ -8,7 +8,6 @@ import com.tacz.guns.api.item.builder.AmmoItemBuilder;
 import com.tacz.guns.api.item.builder.AttachmentItemBuilder;
 import com.tacz.guns.api.item.builder.GunItemBuilder;
 import com.tacz.guns.init.ModItems;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -17,9 +16,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.function.Function;
 
-public record TabConfig(ResourceLocation id, String name, Function<HolderLookup.Provider, ItemStack> icon) {
+public record TabConfig(ResourceLocation id, String name, ItemStack icon) {
     public static final ResourceLocation TAB_AMMO = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ammo");
 
     public static final ResourceLocation TAB_PISTOL = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "pistol");
@@ -41,21 +39,21 @@ public record TabConfig(ResourceLocation id, String name, Function<HolderLookup.
     public static final ResourceLocation TAB_EMPTY = ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "empty");
 
     public static final List<TabConfig> DEFAULT_TABS = List.of(
-            new TabConfig(TabConfig.TAB_AMMO, "tacz.type.ammo.name", (provider) -> AmmoItemBuilder.create().setId(DefaultAssets.DEFAULT_AMMO_ID).build()),
-            new TabConfig(TabConfig.TAB_PISTOL, "tacz.type.pistol.name", (provider) -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "glock_17")).forceBuild(null)),
-            new TabConfig(TabConfig.TAB_SNIPER, "tacz.type.sniper.name", (provider) -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ai_awp")).forceBuild(null)),
-            new TabConfig(TabConfig.TAB_RIFLE, "tacz.type.rifle.name", (provider) -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ak47")).forceBuild(null)),
-            new TabConfig(TabConfig.TAB_SHOTGUN, "tacz.type.shotgun.name", (provider) -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "db_short")).forceBuild(null)),
-            new TabConfig(TabConfig.TAB_SMG, "tacz.type.smg.name", (provider) -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "hk_mp5a5")).forceBuild(null)),
-            new TabConfig(TabConfig.TAB_RPG, "tacz.type.rpg.name", (provider) -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "rpg7")).forceBuild(null)),
-            new TabConfig(TabConfig.TAB_MG, "tacz.type.mg.name", (provider) -> GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "m249")).forceBuild(null)),
-            new TabConfig(TabConfig.TAB_SCOPE, "tacz.type.scope.name",  (provider) -> AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "scope_acog_ta31")).build()),
-            new TabConfig(TabConfig.TAB_MUZZLE, "tacz.type.muzzle.name", (provider) -> AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "muzzle_compensator_trident")).build()),
-            new TabConfig(TabConfig.TAB_STOCK, "tacz.type.stock.name", (provider) -> AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "stock_militech_b5")).build()),
-            new TabConfig(TabConfig.TAB_GRIP, "tacz.type.grip.name", (provider) -> AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "grip_magpul_afg_2")).build()),
-            new TabConfig(TabConfig.TAB_EXTENDED_MAG, "tacz.type.extended_mag.name", (provider) -> AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "extended_mag_3")).build()),
-            new TabConfig(TabConfig.TAB_LASER, "tacz.type.laser.name", (provider) -> AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "laser_compact")).build()),
-            new TabConfig(TabConfig.TAB_MISC, "tacz.type.misc.name", (provider) -> ModItems.GUN_SMITH_TABLE.get().getDefaultInstance())
+            new TabConfig(TabConfig.TAB_AMMO, "tacz.type.ammo.name", AmmoItemBuilder.create().setId(DefaultAssets.DEFAULT_AMMO_ID).build()),
+            new TabConfig(TabConfig.TAB_PISTOL, "tacz.type.pistol.name", GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "glock_17")).forceBuild(null)),
+            new TabConfig(TabConfig.TAB_SNIPER, "tacz.type.sniper.name", GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ai_awp")).forceBuild(null)),
+            new TabConfig(TabConfig.TAB_RIFLE, "tacz.type.rifle.name", GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "ak47")).forceBuild(null)),
+            new TabConfig(TabConfig.TAB_SHOTGUN, "tacz.type.shotgun.name", GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "db_short")).forceBuild(null)),
+            new TabConfig(TabConfig.TAB_SMG, "tacz.type.smg.name", GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "hk_mp5a5")).forceBuild(null)),
+            new TabConfig(TabConfig.TAB_RPG, "tacz.type.rpg.name", GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "rpg7")).forceBuild(null)),
+            new TabConfig(TabConfig.TAB_MG, "tacz.type.mg.name", GunItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "m249")).forceBuild(null)),
+            new TabConfig(TabConfig.TAB_SCOPE, "tacz.type.scope.name", AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "scope_acog_ta31")).build()),
+            new TabConfig(TabConfig.TAB_MUZZLE, "tacz.type.muzzle.name", AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "muzzle_compensator_trident")).build()),
+            new TabConfig(TabConfig.TAB_STOCK, "tacz.type.stock.name", AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "stock_militech_b5")).build()),
+            new TabConfig(TabConfig.TAB_GRIP, "tacz.type.grip.name", AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "grip_magpul_afg_2")).build()),
+            new TabConfig(TabConfig.TAB_EXTENDED_MAG, "tacz.type.extended_mag.name", AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "extended_mag_3")).build()),
+            new TabConfig(TabConfig.TAB_LASER, "tacz.type.laser.name", AttachmentItemBuilder.create().setId(ResourceLocation.fromNamespaceAndPath(GunMod.MOD_ID, "laser_compact")).build()),
+            new TabConfig(TabConfig.TAB_MISC, "tacz.type.misc.name", ModItems.GUN_SMITH_TABLE.get().getDefaultInstance())
     );
 
     public static class Deserializer implements JsonDeserializer<TabConfig> {
@@ -71,7 +69,7 @@ public record TabConfig(ResourceLocation id, String name, Function<HolderLookup.
             ResourceLocation id = context.deserialize(object.get("id"), ResourceLocation.class);
             ItemStack icon = ItemStack.CODEC.parse(JsonOps.INSTANCE, GsonHelper.getAsJsonObject(object, "icon")).getOrThrow();
             String name = GsonHelper.getAsString(object, "name", "tacz.type.unknown.name");
-            return new TabConfig(id, name, (provider) -> icon);
+            return new TabConfig(id, name, icon);
         }
     }
 

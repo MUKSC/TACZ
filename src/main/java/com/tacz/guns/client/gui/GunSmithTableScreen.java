@@ -57,7 +57,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.neoforged.neoforge.network.PacketDistributor;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
@@ -421,7 +420,7 @@ public class GunSmithTableScreen extends AbstractContainerScreen<GunSmithTableMe
             ResourceLocation type = tabConfig.id();
             int xOffset = leftPos + 157 + 24 * i;
 
-            ItemStack icon = tabConfig.icon().apply(Minecraft.getInstance().level.registryAccess());
+            ItemStack icon = tabConfig.icon();
 
             TypeButton typeButton = new TypeButton(xOffset, topPos + 2, icon, b -> {
                 this.selectedType = type;
