@@ -1,1 +1,2 @@
-- Implemented a workaround to the muzzle flash rendering issue
+- Fixed a crash when both TerraFirmaCraft and CC: Tweaked are present
+- Fixed a crash when loading into a world with an embedded resource pack (`resource.zip`)
