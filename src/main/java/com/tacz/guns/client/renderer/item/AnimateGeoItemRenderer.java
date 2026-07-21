@@ -14,13 +14,11 @@ import com.tacz.guns.client.animation.statemachine.GunAnimationConstant;
 import com.tacz.guns.client.animation.statemachine.ItemAnimationStateContext;
 import com.tacz.guns.client.model.BedrockAnimatedModel;
 import com.tacz.guns.client.model.bedrock.BedrockPart;
-import com.tacz.guns.client.renderer.other.HandRenderer;
 import com.tacz.guns.client.sound.SoundPlayManager;
 import com.tacz.guns.util.math.MathUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -215,16 +213,6 @@ public abstract class AnimateGeoItemRenderer<M extends BedrockAnimatedModel, CTX
      */
     public void renderFirstPerson(LocalPlayer player, ItemStack stack, ItemDisplayContext ctx, PoseStack poseStack, MultiBufferSource bufferSource,
                                   int light, float partialTick) {
-        // FIXME: I feel like there's a proper way to fix this but idk
-        Minecraft minecraft = Minecraft.getInstance();
-        GameRenderer gameRenderer = minecraft.gameRenderer;
-        HandRenderer.INSTANCE.renderSolid((poseStack2) -> {
-            renderFirstPersonInner(player, stack, ctx, poseStack2 == null ? poseStack : poseStack2, bufferSource, light, partialTick);
-        }, minecraft.getTimer().getGameTimeDeltaPartialTick(false), gameRenderer.getMainCamera(), gameRenderer);
-    }
-
-    protected void renderFirstPersonInner(LocalPlayer player, ItemStack stack, ItemDisplayContext ctx, PoseStack poseStack, MultiBufferSource bufferSource,
-                                          int light, float partialTick) {
         M model = getModel(stack);
         if (model != null) {
             poseStack.pushPose();

@@ -129,7 +129,7 @@ dependencies {
     compileOnly(libs.dev.kosmx.player.animation.lib.forge)
     implementation(libs.maven.modrinth.sodium)
     implementation(libs.maven.modrinth.iris)
-    compileOnly(libs.maven.modrinth.acceleratedrendering)
+    implementation(libs.curse.maven.acceleratedrendering)
     compileOnly(libs.maven.modrinth.carry.on)
     compileOnly(libs.maven.modrinth.shoulder.surfing.reloaded)
     compileOnly(libs.mezz.jei.common.api)
