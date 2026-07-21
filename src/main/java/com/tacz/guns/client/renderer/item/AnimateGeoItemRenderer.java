@@ -213,6 +213,11 @@ public abstract class AnimateGeoItemRenderer<M extends BedrockAnimatedModel, CTX
      */
     public void renderFirstPerson(LocalPlayer player, ItemStack stack, ItemDisplayContext ctx, PoseStack poseStack, MultiBufferSource bufferSource,
                                   int light, float partialTick) {
+        renderFirstPersonInner(player, stack, ctx, poseStack, bufferSource, light, partialTick);
+    }
+
+    protected void renderFirstPersonInner(LocalPlayer player, ItemStack stack, ItemDisplayContext ctx, PoseStack poseStack, MultiBufferSource bufferSource,
+                                          int light, float partialTick) {
         M model = getModel(stack);
         if (model != null) {
             poseStack.pushPose();
