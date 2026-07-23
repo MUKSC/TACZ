@@ -1,4 +1,7 @@
+import me.modmuss50.mpp.platforms.modrinth.ModrinthEnvironment
+
 plugins {
+    alias(libs.plugins.dotenv)
     alias(libs.plugins.moddev)
     alias(libs.plugins.mod.publish)
 }
@@ -175,6 +178,7 @@ publishMods {
     modrinth {
         projectId = project.property("modrinth_id") as String
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+            .orElse(provider { env.fetch("MODRINTH_TOKEN") })
         minecraftVersions.add("1.21.1")
         environment = ModrinthEnvironment.CLIENT_AND_SERVER
     }
@@ -182,6 +186,7 @@ publishMods {
     curseforge {
         projectId = project.property("curseforge_id") as String
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+            .orElse(provider { env.fetch("CURSEFORGE_TOKEN") })
         minecraftVersions.add("1.21.1")
         client = true
         server = true
@@ -190,6 +195,7 @@ publishMods {
     github {
         repository = project.property("repository") as String
         accessToken = providers.environmentVariable("GITHUB_TOKEN")
+            .orElse(provider { env.fetch("GITHUB_TOKEN") })
         commitish = "neoforge/1.21.1"
         tagName = "neoforge-${project.version}"
     }

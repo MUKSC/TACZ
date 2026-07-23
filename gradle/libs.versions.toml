@@ -1,4 +1,5 @@
 [versions]
+dotenv = "4.0.0"
 neoforge = "21.1.233"
 neoforge-range = "[21,)"
 moddev = "2.0.74"
@@ -50,5 +51,6 @@ dev-latvian-mods-kubejs-neoforge = { module = "dev.latvian.mods:kubejs-neoforge"
 dev-latvian-mods-rhino = { module = "dev.latvian.mods:rhino", version.ref = "rhino" }
 
 [plugins]
+dotenv = { id = "co.uzzu.dotenv.gradle", version.ref = "dotenv" }
 moddev = { id = "net.neoforged.moddev", version.ref = "moddev" }
 mod-publish = { id = "me.modmuss50.mod-publish-plugin", version.ref = "mod-publish" }
