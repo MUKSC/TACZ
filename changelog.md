@@ -1,2 +1,2 @@
-- Fixed a crash when both TerraFirmaCraft and CC: Tweaked are present
-- Fixed a crash when loading into a world with an embedded resource pack (`resource.zip`)
+- Re-enabled AcceleratedRendering compatibility, all thanks to [Argon4W](https://github.com/Argon4W)!
+- Fixed an incompatibility with Vampirism
