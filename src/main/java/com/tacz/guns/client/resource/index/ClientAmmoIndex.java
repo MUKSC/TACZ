@@ -230,10 +230,8 @@ public class ClientAmmoIndex {
             try {
                 AmmoParticle particle = display.getParticle();
                 String name = particle.getName();
-                if (StringUtils.isNoneBlank()) {
-                    HolderLookup.Provider provider = Minecraft.getInstance().level instanceof Level level ?
-                        level.registryAccess() : VanillaRegistries.createLookup();
-                    particle.setParticleOptions(ParticleArgument.readParticle(new StringReader(name), provider));
+                if (StringUtils.isNoneBlank() && Minecraft.getInstance().level instanceof Level level) {
+                    particle.setParticleOptions(ParticleArgument.readParticle(new StringReader(name), level.registryAccess()));
                     Preconditions.checkArgument(particle.getCount() > 0, "particle count must be greater than 0");
                     Preconditions.checkArgument(particle.getLifeTime() > 0, "particle life time must be greater than 0");
                     index.particle = particle;
