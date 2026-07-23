@@ -176,12 +176,15 @@ publishMods {
         projectId = project.property("modrinth_id") as String
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
         minecraftVersions.add("1.21.1")
+        environment = ModrinthEnvironment.CLIENT_AND_SERVER
     }
 
     curseforge {
         projectId = project.property("curseforge_id") as String
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
         minecraftVersions.add("1.21.1")
+        client = true
+        server = true
     }
 
     github {

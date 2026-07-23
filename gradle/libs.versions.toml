@@ -5,7 +5,7 @@ moddev = "2.0.74"
 parchment = "2024.11.17"
 minecraft = "1.21.1"
 minecraft-range = "[1.21.1]"
-mod-publish = "1.0.0"
+mod-publish = "2.1.1"
 
 simplebedrockmodel = "2.2.1-neoforge+mc1.21.1"
 mae = "1.1.2"
