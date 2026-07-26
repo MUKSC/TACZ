@@ -8,7 +8,6 @@ import com.tacz.guns.client.model.bedrock.BedrockModel;
 import com.tacz.guns.client.renderer.item.GunItemRendererWrapper;
 import com.tacz.guns.client.resource.GunDisplayInstance;
 import com.tacz.guns.client.resource.InternalAssetLoader;
-import com.tacz.guns.compat.iris.IrisCompat;
 import com.tacz.guns.config.client.RenderConfig;
 import com.tacz.guns.entity.EntityKineticBullet;
 import net.minecraft.client.Camera;
@@ -105,18 +104,13 @@ public class EntityBulletRenderer extends EntityRenderer<EntityKineticBullet> {
                     // 按照生存时间减少曳光弹的偏移，避免渲染位置距离落点太远
                     double offsetReducer = Math.max(0, (50 - disToEye)) / 50;
                     // 摄像机旋转
-                    // 1.21.1 修改了渲染, 现在不需要坐标空间转换, 但是 Iris 还是老样子所以..在 Iris 光影包开启的时候还是需要做类似的措施.
-                    if (IrisCompat.isPackInUseQuick()) {
-                        poseStack.mulPose(Axis.YN.rotationDegrees(bullet.getCameraYRot() + 180f));
-                        poseStack.mulPose(Axis.XN.rotationDegrees(bullet.getCameraXRot()));
-                    }
+                    poseStack.mulPose(Axis.YN.rotationDegrees(bullet.getCameraYRot() + 180f));
+                    poseStack.mulPose(Axis.XN.rotationDegrees(bullet.getCameraXRot()));
                     // 应用偏移
                     poseStack.translate(offset.x * offsetReducer, offset.y * offsetReducer, offset.z * offsetReducer);
                     // 逆转摄像机旋转
-                    if (IrisCompat.isPackInUseQuick()) {
-                        poseStack.mulPose(Axis.XP.rotationDegrees(bullet.getCameraXRot()));
-                        poseStack.mulPose(Axis.YP.rotationDegrees(bullet.getCameraYRot() + 180f));
-                    }
+                    poseStack.mulPose(Axis.XP.rotationDegrees(bullet.getCameraXRot()));
+                    poseStack.mulPose(Axis.YP.rotationDegrees(bullet.getCameraYRot() + 180f));
                 }
                 // 说是 override 其实默认值是 1
                 // 所以这里直接乘也没关系

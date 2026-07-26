@@ -1,5 +1,6 @@
 package com.tacz.guns.client.renderer.item;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -236,6 +237,7 @@ public class GunItemRendererWrapper extends AnimateGeoItemRenderer<BedrockGunMod
         if (gunModel.getMuzzleFlashPosPath() != null) {
             // 计算出枪口相对于摄像机中心的坐标
             poseStack.pushPose();
+            poseStack.last().pose().mulLocal(RenderSystem.getModelViewMatrix());
             for (BedrockPart bedrockPart : gunModel.getMuzzleFlashPosPath()) {
                 bedrockPart.translateAndRotateAndScale(poseStack);
             }
