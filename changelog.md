@@ -1,2 +1,1 @@
-- Re-enabled AcceleratedRendering compatibility, all thanks to [Argon4W](https://github.com/Argon4W)!
-- Fixed an incompatibility with Vampirism
+- Fixed a few rendering issues introduced in 1.1.8-hotfix-r4
