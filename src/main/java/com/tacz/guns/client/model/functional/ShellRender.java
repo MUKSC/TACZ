@@ -1,5 +1,6 @@
 package com.tacz.guns.client.model.functional;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
@@ -72,10 +73,8 @@ public class ShellRender implements IFunctionalRenderer {
 
             // 缓存一下 PoseStack
             for (Data data : SHELL_QUEUE) {
-                if (data.normal == null && data.pose == null) {
-                    data.normal = new Matrix3f(poseStack.last().normal());
-                    data.pose = new Matrix4f(poseStack.last().pose());
-                }
+                data.normal = new Matrix3f(poseStack.last().normal());
+                data.pose = new Matrix4f(poseStack.last().pose());
             }
 
             // 渲染抛壳
